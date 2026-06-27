@@ -1,0 +1,41 @@
+<div class="done">
+    <div class="doa glass-card">
+        <div class="arabic">
+            اللَّهُمَّ ارْحَمْنَا بِالْقُرْآنِ، وَجَعَلْهُ لَنَا إِمَامًا وَنُورًا وَهُدًى وَرَحْمَةً، اللَّهُمَّ
+            ذَكِّرْنَا مِنْهُمَا نَسِينَا، وَعَلِّمْنَا مِنْهُمَا جَهِلْنَا، وَارْزُقْنَا تِلَاوَتَهُ آنَاءَ اللَّيْلِ
+            وَأَطْرَافَ النَّهَارِ، وَجَعَلْهُ لَنَا حُجَّةً يَا رَبَّ الْعَالَمِينَ
+        </div>
+        <div class="english">
+            O Allah, have mercy on us through the Quran. Make it a guiding light, guidance and mercy for us. O Allah,
+            remind us what we have forgotten from it, teach us what we are ignorant of from it. Bless us with its
+            recitation all nights and days. Make it as a proof for us, O Lord of the worlds.
+        </div>
+    </div>
+
+    <div class="summary">
+        <div class="count">
+            <div class="khitma">Khitma #{{khitmaCountSignal()}}</div>
+            <div class="page">{{totalPagesReadSignal()}} / 604 pages read</div>
+        </div>
+        <div class="progress" style="height: 25px;">
+            <div class="progress-bar" role="progressbar" [style.width.%]="progressSignal()" aria-valuenow="25"
+                aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="glass-container">
+            <div class="glass-progress" style="width: 65%;"></div>
+        </div>
+        <div class="message">
+            You have recited {{pagesReadThisSession}} pages for this session. Thank you for reciting. May Allah accept
+            it from you. Amin.
+        </div>
+    </div>
+
+    <div class="controls">
+        <button type="button" class="btn btn-lg btn-light" (click)="restart()">Do another session.</button>
+        <button type="button" class="btn btn-lg btn-light" (click)="getGift()">A gift for you :)</button>
+    </div>
+</div>
+
+<div class="footer">
+    Got any feedbacks? Let us know <a href="https://forms.gle/PHZoNEPVk1ooC6wm7" target="_blank">here</a>.
+</div>

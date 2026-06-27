@@ -1,0 +1,73 @@
+.done {
+    text-align: center;
+    margin: 50px 20px;
+}
+
+.doa {
+    margin-bottom: 50px;
+    border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 20px;
+}
+
+.doa .arabic {
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.count {
+    display: flex;
+    justify-content: space-between;
+}
+
+.count .page {
+    font-style: italic;
+}
+
+.progress {
+    margin-bottom: 50px;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.progress-bar {
+    background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+}
+
+.controls {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.controls button {
+    margin-right: 15px;
+    letter-spacing: 1.2px;
+}
+
+.footer {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 25px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+@media (min-width: 768px) {
+    .done {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        position: relative;
+        left: 0;
+    }
+}

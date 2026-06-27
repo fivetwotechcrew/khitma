@@ -1,0 +1,19 @@
+.page {
+    display: flex;
+    justify-content: center;
+}
+
+.page img {
+    width: 100vw;
+}
+
+.controls {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.controls button {
+    margin-right: 15px;
+    letter-spacing: 1.2px;
+}

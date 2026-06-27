@@ -1,0 +1,57 @@
+# #######################################################################
+# Angular Official Gitignore Template
+# #######################################################################
+
+# Compiled output and build artifacts
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Angular local cache (Introduced in Angular 14+)
+/.angular/cache
+
+# Dependencies (Never commit node_modules)
+/node_modules
+
+# Project-specific local environment variables
+.env
+.env.local
+.env.*.local
+src/environments/environment.development.ts
+src/environments/environment.production.ts
+
+# Log files
+Lines starting with # are comments.
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data and test coverage output
+/coverage
+/.nyc_output
+
+# #######################################################################
+# Editor & IDE Configs (Optional but highly recommended)
+# #######################################################################
+
+# Visual Studio Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# IntelliJ / WebStorm
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Operating System Files
+.DS_Store
+Thumbs.db

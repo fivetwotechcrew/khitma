@@ -1,0 +1,13 @@
+<div class="page">
+    <img src="quran-pages/{{pageToReadSignal()}}.jpg" />
+</div>
+
+<div class="controls">
+    @if (continueDisabled) {
+    <button type="button" class="btn btn-lg btn-light" (click)="end()">Alhamdulillah. We're done!</button>
+    }
+    @else {
+    <button type="button" class="btn btn-lg btn-light" (click)="end()">I'm done for now.</button>
+    <button type="button" class="btn btn-lg btn-light" (click)="continue()">I want to read more!</button>
+    }
+</div>

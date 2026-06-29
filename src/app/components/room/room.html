@@ -3,18 +3,19 @@
         Welcome to {{roomNameSignal()}}
     </div>
     <div class="notes">
-        Just a tiny note before we start... :)
+        Just a tiny note before we start... &#128522;
         <br /><br />
-        <span><img src="approve.png" width="20" /> Please ensure that you are in a state of purity with a <span
-                class="highlight">valid wudhu'</span>, and
+        <span (click)="toggleCheck('1')"><img src={{checkPngSignal1()}} width="20" /> Please ensure that you are in a
+            state of purity with a <span class="highlight">valid wudhu'</span>, and
             that you are <span class="highlight">covering your
                 aurah</span>.</span>
         <br />
-        <span><img src="approve.png" width="20" /> Let's take a minute to do some <span
-                class="highlight">istighfar</span> and to <span class="highlight">set
+        <span (click)="toggleCheck('2')"><img src={{checkPngSignal2()}} width="20" /> Let's take a minute to do some
+            <span class="highlight">istighfar</span> and to <span class="highlight">set
                 our intentions</span> for this session.</span>
         <br />
-        <span><img src="approve.png" width="20" /> Please ensure that you <span class="highlight yellow">click either
+        <span (click)="toggleCheck('3')"><img src={{checkPngSignal3()}} width="20" /> Please ensure that you <span
+                class="highlight yellow">click either
                 "I'm done for now" or "I want
                 to
                 read more"</span> after finishing a page. This ensures that the system succesfully records the page as
@@ -25,4 +26,9 @@
         Let's start! Bismillah.
     </div>
     <button type="button" class="btn btn-lg btn-light" (click)="startSession()">Join the khitma!</button>
+    <br />
+    @if (clickedSignal() && !allCheckedSignal()) {
+    <span class="text-danger">You have not check all the boxes. Please read through & check them all before starting.
+        &#128521;</span>
+    }
 </div>

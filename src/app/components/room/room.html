@@ -26,9 +26,8 @@
         Let's start! Bismillah.
     </div>
     <button type="button" class="btn btn-lg btn-light" (click)="startSession()">Join the khitma!</button>
-    <br />
     @if (clickedSignal() && !allCheckedSignal()) {
-    <span class="text-danger">You have not check all the boxes. Please read through & check them all before starting.
-        &#128521;</span>
+    <div class="text-danger" style="padding-top: 20px;">You have not checked all the boxes. Please read through & check them all before starting.
+        &#128521;</div>
     }
 </div>

@@ -37,7 +37,6 @@
 
 .controls {
     margin-top: 20px;
-    margin-bottom: 50px;
     display: flex;
     justify-content: center;
 }
@@ -50,10 +49,7 @@
 .footer {
     width: 100%;
     text-align: center;
-    padding-bottom: 25px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    padding-top: 20px;
 }
 
 @media (min-width: 768px) {
@@ -62,12 +58,5 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-    }
-}
-
-@media (max-width: 768px) {
-    .footer {
-        position: relative;
-        left: 0;
     }
 }

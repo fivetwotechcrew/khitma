@@ -55,7 +55,6 @@ export class Done implements OnInit {
   async getLargestGiftId() {
       const { data, error } = await this.supabaseService.getLatestGift();
       this.largestGiftId = data && data.length > 0 ? data[0].Id : 50;
-      console.log(this.largestGiftId);
   }
 
   restart() {

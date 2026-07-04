@@ -20,6 +20,10 @@
                 to
                 read more"</span> after finishing a page. This ensures that the system successfully records the page as
             completed.</span>
+        <br />
+        <span (click)="toggleCheck('4')"><img src={{checkPngSignal4()}} width="20" /> If a Champ doesn't finish her
+            page within one (1) hour, it goes back into the pool to be read again – so <span
+                class="highlight yellow">pages might not appear in order.</span> </span>
         <br /><br />
         All checked? <img src="check-mark.png" width="20" />
         <br />
@@ -27,7 +31,8 @@
     </div>
     <button type="button" class="btn btn-lg btn-light" (click)="startSession()">Join the khitma!</button>
     @if (clickedSignal() && !allCheckedSignal()) {
-    <div class="text-danger" style="padding-top: 20px;">You have not checked all the boxes. Please read through & check them all before starting.
+    <div class="text-danger" style="padding-top: 20px;">You have not checked all the boxes. Please read through & check
+        them all before starting.
         &#128521;</div>
     }
 </div>

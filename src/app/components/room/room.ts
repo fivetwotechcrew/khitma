@@ -21,6 +21,7 @@ export class Room implements OnInit {
   checkPng1 = this.uncheckedPng;
   checkPng2 = this.uncheckedPng;
   checkPng3 = this.uncheckedPng;
+  checkPng4 = this.uncheckedPng;
   allChecked = false;
   clicked = false;
 
@@ -28,6 +29,7 @@ export class Room implements OnInit {
   checkPngSignal1 = signal<string | null>(this.checkPng1);
   checkPngSignal2 = signal<string | null>(this.checkPng2);
   checkPngSignal3 = signal<string | null>(this.checkPng3);
+  checkPngSignal4 = signal<string | null>(this.checkPng4);
   allCheckedSignal = signal<boolean>(this.allChecked);
   clickedSignal = signal<boolean>(this.clicked);
 
@@ -162,11 +164,16 @@ export class Room implements OnInit {
         else if (this.checkPng3 == this.checkedPng) this.checkPng3 = this.uncheckedPng;
         this.checkPngSignal3.set(this.checkPng3);
         break;
+      case "4":
+        if (this.checkPng4 == this.uncheckedPng) this.checkPng4 = this.checkedPng;
+        else if (this.checkPng4 == this.checkedPng) this.checkPng4 = this.uncheckedPng;
+        this.checkPngSignal4.set(this.checkPng4);
+        break;
       default:
         break;
     }
 
-    if (this.checkPng1 == this.checkedPng && this.checkPng2 == this.checkedPng && this.checkPng3 == this.checkedPng) this.allChecked = true;
+    if (this.checkPng1 == this.checkedPng && this.checkPng2 == this.checkedPng && this.checkPng3 == this.checkedPng && this.checkPng4 == this.checkedPng) this.allChecked = true;
     else this.allChecked = false;
     this.allCheckedSignal.set(this.allChecked);
   }

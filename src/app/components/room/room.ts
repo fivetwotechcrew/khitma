@@ -65,37 +65,8 @@ export class Room implements OnInit {
           localStorage.setItem('KhitmaID', this.khitma.Id);
           localStorage.setItem('PagesReadThisSession', '0');
 
-          // get latest page assignment
-          const { data, error } = await this.supabaseService.getLatestPageAssignment(this.khitma.Id);
-          let lastAssignment = data && data.length > 0 ? data[0] : null;
-          if (lastAssignment) { // get latest page assignment
-            if (lastAssignment.PageNum == 604) { // start new khitma, last khitma is done
-              const { data, error } = await this.supabaseService.createNewKhitma(this.room.Id);
-              this.khitma = data && data.length > 0 ? data[0] : null;
-              console.log(this.khitma);
-
-              if (this.khitma) {
-                this.pageToRead = 1
-                localStorage.setItem('PageToRead', this.pageToRead.toString());
-                localStorage.setItem('KhitmaID', this.khitma.Id);
-                localStorage.setItem('PagesReadThisSession', '0');
-                await this.supabaseService.createNewPageAssignment(this.khitma.Id, this.pageToRead);
-
-                this.router.navigate(['/read']);
-              }
-              else {
-                console.error('Failed to start session.');
-              }
-            }
-            else { // continue current khitma
-              this.pageToRead = lastAssignment.PageNum + 1;
-              await this.supabaseService.createNewPageAssignment(this.khitma.Id, this.pageToRead);
-            }
-          }
-          else { // no pages read for this khitma, start with page 1
-            this.pageToRead = 1;
-            await this.supabaseService.createNewPageAssignment(this.khitma.Id, this.pageToRead);
-          }
+          // get page assignment
+          await this.assignPage();
 
           localStorage.setItem('PageToRead', this.pageToRead.toString());
           this.router.navigate(['/read']);
@@ -123,6 +94,55 @@ export class Room implements OnInit {
         console.error('Failed to start session.');
       }
     }
+  }
+
+  async assignPage() {
+    // first, check not completed page assignment
+    let notCompletedAssignmentPageNumber = await this.checkForNotCompletedPageAssignment();
+    if (notCompletedAssignmentPageNumber == -1) {
+      // no not completed page assignment, assign new page
+      const { data, error } = await this.supabaseService.getLatestPageAssignment(this.khitma.Id);
+      let lastAssignment = data && data.length > 0 ? data[0] : null;
+      if (lastAssignment) { // get latest page assignment
+        if (lastAssignment.PageNum == 604) { // start new khitma, last khitma is done
+          const { data, error } = await this.supabaseService.createNewKhitma(this.room.Id);
+          this.khitma = data && data.length > 0 ? data[0] : null;
+          console.log(this.khitma);
+
+          if (this.khitma) {
+            this.pageToRead = 1
+            localStorage.setItem('PageToRead', this.pageToRead.toString());
+            localStorage.setItem('KhitmaID', this.khitma.Id);
+            localStorage.setItem('PagesReadThisSession', '0');
+            await this.supabaseService.createNewPageAssignment(this.khitma.Id, this.pageToRead);
+
+            this.router.navigate(['/read']);
+          }
+          else {
+            console.error('Failed to start session.');
+          }
+        }
+        else { // continue current khitma
+          this.pageToRead = lastAssignment.PageNum + 1;
+          await this.supabaseService.createNewPageAssignment(this.khitma.Id, this.pageToRead);
+        }
+      }
+      else { // no pages read for this khitma, start with page 1
+        this.pageToRead = 1;
+        await this.supabaseService.createNewPageAssignment(this.khitma.Id, this.pageToRead);
+      }
+    }
+    else {
+      // assign not completed page
+      this.pageToRead = notCompletedAssignmentPageNumber;
+    }
+  }
+
+  async checkForNotCompletedPageAssignment(): Promise<number> {
+    const { data, error } = await this.supabaseService.getNotCompletedPageAssignment(this.khitma.Id);
+    let notCompletedAssignment = data && data.length > 0 ? data[0] : null;
+    if (notCompletedAssignment) return notCompletedAssignment.PageNum;
+    else return -1;
   }
 
   toggleCheck(checkLabel: string) {

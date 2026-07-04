@@ -46,23 +46,8 @@ export class Read implements OnInit {
     let totalPagesRead = data && data.length > 0 ? data.length : 0;
     await this.supabaseService.updateKhitma(this.khitmaId, totalPagesRead, false);
 
-    // assign new page to read
-    if (true) {
-      const { data, error } = await this.supabaseService.getLatestPageAssignment(this.khitmaId);
-      let lastAssignment = data && data.length > 0 ? data[0] : null;
-      console.log(lastAssignment);
-
-      if (lastAssignment) { // get latest page assignment
-        this.pageToRead = lastAssignment.PageNum + 1;
-        this.pageToReadSignal.set(this.pageToRead);
-        if (this.pageToRead == 604) {
-          this.continueDisabled = true;
-          this.continueDisabledSignal.set(this.continueDisabled);
-        }
-        await this.supabaseService.createNewPageAssignment(this.khitmaId, this.pageToRead);
-        localStorage.setItem('PageToRead', this.pageToRead.toString());
-      }
-    }
+    // get page assignment
+    await this.assignPage();
   }
 
   async end() {
@@ -79,6 +64,44 @@ export class Read implements OnInit {
     await this.supabaseService.updateKhitma(this.khitmaId, totalPagesRead, totalPagesRead == 604 ? true : false);
 
     this.router.navigate(['/done']);
+  }
+
+  async assignPage() {
+    // first, check not completed page assignment
+    let notCompletedAssignmentPageNumber = await this.checkForNotCompletedPageAssignment();
+    if (notCompletedAssignmentPageNumber == -1) {
+      // no not completed page assignment, assign new page
+      const { data, error } = await this.supabaseService.getLatestPageAssignment(this.khitmaId);
+      let lastAssignment = data && data.length > 0 ? data[0] : null;
+      if (lastAssignment) { // get latest page assignment
+        this.pageToRead = lastAssignment.PageNum + 1;
+        this.pageToReadSignal.set(this.pageToRead);
+        if (this.pageToRead == 604) {
+          this.continueDisabled = true;
+          this.continueDisabledSignal.set(this.continueDisabled);
+        }
+        await this.supabaseService.createNewPageAssignment(this.khitmaId, this.pageToRead);
+        localStorage.setItem('PageToRead', this.pageToRead.toString());
+      }
+      else { // no pages read for this khitma, start with page 1
+        this.pageToRead = 1;
+        await this.supabaseService.createNewPageAssignment(this.khitmaId, this.pageToRead);
+        localStorage.setItem('PageToRead', this.pageToRead.toString());
+      }
+    }
+    else {
+      // assign not completed page
+      this.pageToRead = notCompletedAssignmentPageNumber;
+      this.pageToReadSignal.set(this.pageToRead);
+      localStorage.setItem('PageToRead', this.pageToRead.toString());
+    }
+  }
+
+  async checkForNotCompletedPageAssignment(): Promise<number> {
+    const { data, error } = await this.supabaseService.getNotCompletedPageAssignment(this.khitmaId);
+    let notCompletedAssignment = data && data.length > 0 ? data[0] : null;
+    if (notCompletedAssignment) return notCompletedAssignment.PageNum;
+    else return -1;
   }
 
 }

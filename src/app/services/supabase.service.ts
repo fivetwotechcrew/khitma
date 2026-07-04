@@ -77,6 +77,18 @@ export class SupabaseService {
       .limit(1);
   }
 
+  async getNotCompletedPageAssignment(khitmaId: number) {
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    return this.supabase
+      .from('page_assignment')
+      .select('*')
+      .eq('KhitmaId', khitmaId)
+      .eq('IsCompleted', false)
+      .lt('DateTimeStarted', oneHourAgo)
+      .order('PageNum', { ascending: true })
+      .limit(1);
+  }
+
   async getLatestGift() {
     return this.supabase
       .from('gift')

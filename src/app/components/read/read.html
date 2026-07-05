@@ -1,8 +1,8 @@
 <div class="page">
-    <img src="quran-pages/{{pageToReadSignal()}}.jpg" />
+    <img src="quran-pages/{{pageToReadSignal()}}.jpg" (load)="onImageLoad()" (error)="onImageError()" [hidden]="imageIsLoadingSignal()" />
 </div>
 
-<div class="controls">
+<div class="controls" [hidden]="imageIsLoadingSignal()">
     @if (continueDisabled) {
     <button type="button" class="btn btn-lg btn-light" (click)="end()">Alhamdulillah. We're done!</button>
     }
@@ -10,4 +10,8 @@
     <button type="button" class="btn btn-lg btn-light" (click)="end()">I'm done for now.</button>
     <button type="button" class="btn btn-lg btn-light" (click)="continue()">I want to read more!</button>
     }
+</div>
+
+<div id="loading-mask" [hidden]="!imageIsLoadingSignal()">
+    <div class="spinner"></div>
 </div>

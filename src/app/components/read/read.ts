@@ -14,11 +14,11 @@ export class Read implements OnInit {
   pagesReadThisSession = 0;
   pageToRead = 0;
   continueDisabled = false;
-  imageIsLoading = true;
+  showLoader = true;
 
   pageToReadSignal = signal<number>(this.pageToRead);
   continueDisabledSignal = signal<boolean>(this.continueDisabled);
-  imageIsLoadingSignal = signal<boolean>(this.imageIsLoading);
+  showLoaderSignal = signal<boolean>(this.showLoader);
 
   constructor(
     private readonly supabaseService: SupabaseService,
@@ -37,8 +37,8 @@ export class Read implements OnInit {
   }
 
   async continue() {
-    this.imageIsLoading = true;
-    this.imageIsLoadingSignal.set(this.imageIsLoading);
+    this.showLoader = true;
+    this.showLoaderSignal.set(this.showLoader);
 
     this.pagesReadThisSession++;
     localStorage.setItem('PagesReadThisSession', this.pagesReadThisSession.toString());
@@ -56,6 +56,9 @@ export class Read implements OnInit {
   }
 
   async end() {
+    this.showLoader = true;
+    this.showLoaderSignal.set(this.showLoader);
+
     this.pagesReadThisSession++;
     localStorage.setItem('PagesReadThisSession', this.pagesReadThisSession.toString());
 
@@ -110,14 +113,14 @@ export class Read implements OnInit {
   }
 
   onImageLoad() {
-    this.imageIsLoading = false;
-    this.imageIsLoadingSignal.set(this.imageIsLoading);
+    this.showLoader = false;
+    this.showLoaderSignal.set(this.showLoader);
     console.log('Image is fully loaded!')
   }
 
   onImageError() {
-    this.imageIsLoading = false;
-    this.imageIsLoadingSignal.set(this.imageIsLoading);
+    this.showLoader = false;
+    this.showLoaderSignal.set(this.showLoader);
     console.log('Image failed to load.')
   }
 

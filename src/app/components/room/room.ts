@@ -16,8 +16,8 @@ export class Room implements OnInit {
   room: any = null;
   roomName: string | null = null;
   roomCode: string | null = null;
-  uncheckedPng = "approve.png";
-  checkedPng = "check-box.png";
+  uncheckedPng = "checkbox-unchecked.png";
+  checkedPng = "checkbox-checked.png";
   checkPng1 = this.uncheckedPng;
   checkPng2 = this.uncheckedPng;
   checkPng3 = this.uncheckedPng;

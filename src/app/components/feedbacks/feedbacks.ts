@@ -25,6 +25,5 @@ export class Feedbacks implements OnInit {
     const { data, error } = await this.supabaseService.getFeedbacks();
     this.feedbacks = data && data.length > 0 ? data : [];
     this.feedbacksSignal.set(this.feedbacks);
-    console.log(this.feedbacks)
   }
 }

@@ -76,7 +76,6 @@ export class Room implements OnInit {
         else { // active khitma does not exist, start new khitma and page assignment
           const { data, error } = await this.supabaseService.createNewKhitma(this.room.Id);
           this.khitma = data && data.length > 0 ? data[0] : null;
-          console.log(this.khitma);
 
           if (this.khitma) {
             this.pageToRead = 1
@@ -109,7 +108,6 @@ export class Room implements OnInit {
         if (lastAssignment.PageNum == 604) { // start new khitma, last khitma is done
           const { data, error } = await this.supabaseService.createNewKhitma(this.room.Id);
           this.khitma = data && data.length > 0 ? data[0] : null;
-          console.log(this.khitma);
 
           if (this.khitma) {
             this.pageToRead = 1

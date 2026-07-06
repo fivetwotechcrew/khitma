@@ -36,8 +36,6 @@ export class Done implements OnInit {
     this.pagesReadThisSession = localStorage.getItem('PagesReadThisSession')!.toString().split(',');
     this.pagesReadThisSession = [...new Set(this.pagesReadThisSession)];
     this.numberOfPagesReadThisSession = this.pagesReadThisSession.length;
-    console.log(this.pagesReadThisSession)
-    console.log(this.numberOfPagesReadThisSession)
     this.getSummary();
     this.getKhitmaCount();
     this.getLargestGiftId();

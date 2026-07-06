@@ -28,7 +28,6 @@ export class Read implements OnInit {
     this.pageToRead = parseInt(localStorage.getItem('PageToRead')!.toString());
     this.khitmaId = parseInt(localStorage.getItem('KhitmaID')!.toString());
     this.pagesReadThisSession = localStorage.getItem('PagesReadThisSession')!.toString() != '0' ? localStorage.getItem('PagesReadThisSession')!.toString().split(',') : [];
-    console.log(this.pagesReadThisSession)
 
     if (this.pageToRead == 604) {
       this.continueDisabled = true;
@@ -116,13 +115,11 @@ export class Read implements OnInit {
   onImageLoad() {
     this.showLoader = false;
     this.showLoaderSignal.set(this.showLoader);
-    console.log('Image is fully loaded!')
   }
 
   onImageError() {
     this.showLoader = false;
     this.showLoaderSignal.set(this.showLoader);
-    console.log('Image failed to load.')
   }
 
 }

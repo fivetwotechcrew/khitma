@@ -1,0 +1,32 @@
+<div class="feedbacks">
+    <div class="title">User feedbacks</div>
+    <hr>
+    <div class="notes">
+        Thank you to everyone who has taken some time to provide feedbacks for Khitma Pages. May Allah reward
+        each and every one of you with nothing less than Ihsan itself for every feedback you have submitted.
+        May Khitma Pages keeps on growing and improving, so that all of us may also grow into a strong community bonded
+        by
+        our love for the Quran. Amin :)
+    </div>
+    @if (feedbacks.length == 0) {
+    <em>No user feedbacks recorded.</em>
+    }
+    @for (feedback of feedbacksSignal(); track $index;) {
+    <div class="feedback">
+        <div class="counter">Feedback #{{$index+1}}</div>
+        <div class="item"
+            [ngClass]="feedback.Status == 0 ? '' : feedback.Status == 1 ? 'wip' : feedback.Status == 2 ? 'done' : ''">
+            <div class="status">
+                <img [src]="feedback.Status == 0 ? 'feedback-received.png' : feedback.Status == 1 ? 'feedback-wip.png' : feedback.Status == 2 ? 'feedback-done.png' : ''"
+                    width="20" />
+                <span style="border-bottom: 1px solid rgba(0,0,0,0.25);">{{(feedback.Status == 0 ? 'Received' :
+                    feedback.Status == 1 ? 'Work in progress' : feedback.Status == 2 ? 'Alhamdulillah. Done!' :
+                    '')}}</span>
+            </div>
+            <div class="description">{{feedback.Description}}</div>
+            <div class="date">Submitted on {{feedback.DateCreated | date: 'd/M/y'}} at {{feedback.DateCreated | date :
+                'hh:mm aa'}}</div>
+        </div>
+    </div>
+    }
+</div>

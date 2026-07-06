@@ -138,4 +138,11 @@ export class SupabaseService {
         .eq('KhitmaId', khitmaId)
         .eq('PageNum', pageNum);
   }
+
+  async getFeedbacks() {
+    return this.supabase
+      .from('feedbacks')
+      .select('*')
+      .order('Id', { ascending: false });
+  }
 }

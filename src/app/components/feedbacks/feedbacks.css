@@ -1,0 +1,63 @@
+.feedbacks {
+    text-align: center;
+    margin: 50px 20px;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.notes {
+    width: 100%;
+    padding: 20px;
+    font-size: 0.85em;
+    border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-bottom: 15px;
+}
+
+.feedback .counter {
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+}
+
+.feedback .status {
+    width: 100%;
+    text-align: left;
+    margin-left: -10px;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    font-size: 0.75em;
+}
+
+.feedback .status img {
+    margin-right: 5px;
+}
+
+.feedback .item {
+    margin-bottom: 10px;
+    border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 20px;
+}
+
+.feedback .item.wip {
+    background-color: #fcf40380;
+}
+
+.feedback .item.done {
+    background-color: #2ff22c80;
+}
+
+.feedback .description {
+    margin-bottom: 15px;
+}
+
+.feedback .date {
+    width: 100%;
+    text-align: right;
+    font-size: 0.75em;
+    font-style: italic;
+}

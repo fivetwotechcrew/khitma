@@ -19,7 +19,7 @@ export class Done implements OnInit {
   progress = 0;
   largestGiftId = 50;
   giftUrl: string | null = null;
-  
+
   totalPagesReadSignal = signal<number>(this.totalPagesRead);
   progressSignal = signal<number>(this.progress);
   khitmaCountSignal = signal<number>(this.khitmaCount);
@@ -39,22 +39,22 @@ export class Done implements OnInit {
   }
 
   async getSummary() {
-      const { data, error } = await this.supabaseService.getPagesReadByKhitma(this.khitmaId);
-      this.totalPagesRead = data && data.length > 0 ? data.length : 0;
-      this.totalPagesReadSignal.set(this.totalPagesRead);
-      this.progress = this.totalPagesRead / 604 * 100;
-      this.progressSignal.set(this.progress);
+    const { data, error } = await this.supabaseService.getPagesReadByKhitma(this.khitmaId);
+    this.totalPagesRead = data && data.length > 0 ? data.length : 0;
+    this.totalPagesReadSignal.set(this.totalPagesRead);
+    this.progress = this.totalPagesRead / 604 * 100;
+    this.progressSignal.set(this.progress);
   }
 
   async getKhitmaCount() {
-      const { data, error } = await this.supabaseService.getKhitmasByRoomId(this.roomId);
-      this.khitmaCount = data && data.length > 0 ? data.length : 0;
-      this.khitmaCountSignal.set(this.khitmaCount);
+    const { data, error } = await this.supabaseService.getKhitmasByRoomId(this.roomId);
+    this.khitmaCount = data && data.length > 0 ? data.length : 0;
+    this.khitmaCountSignal.set(this.khitmaCount);
   }
 
   async getLargestGiftId() {
-      const { data, error } = await this.supabaseService.getLatestGift();
-      this.largestGiftId = data && data.length > 0 ? data[0].Id : 50;
+    const { data, error } = await this.supabaseService.getLatestGift();
+    this.largestGiftId = data && data.length > 0 ? data[0].Id : 50;
   }
 
   restart() {
@@ -66,5 +66,16 @@ export class Done implements OnInit {
     const { data, error } = await this.supabaseService.getGift(randomNumber);
     let gift = data && data.length > 0 ? data[0] : 0;
     window.open("https://quran.com/" + gift.SurahAyat + "?readingMode=verse-by-verse&translations=131", '_blank');
+  }
+
+  redirect(event: MouseEvent, page: string) {
+    event.preventDefault();
+    switch (page) {
+      case 'feedbacks':
+        this.router.navigate(['/feedbacks']);
+        break;
+      default:
+        break;
+    }
   }
 }

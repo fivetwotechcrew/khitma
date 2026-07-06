@@ -14,7 +14,8 @@ export class Done implements OnInit {
   roomCode = '';
   khitmaId = 0;
   khitmaCount = 0;
-  pagesReadThisSession = 0;
+  pagesReadThisSession: Array<string> = [];
+  numberOfPagesReadThisSession = 0;
   totalPagesRead = 0;
   progress = 0;
   largestGiftId = 50;
@@ -32,7 +33,11 @@ export class Done implements OnInit {
     this.roomId = parseInt(localStorage.getItem('RoomId')!.toString());
     this.roomCode = localStorage.getItem('RoomCode')!.toString();
     this.khitmaId = parseInt(localStorage.getItem('KhitmaID')!.toString());
-    this.pagesReadThisSession = parseInt(localStorage.getItem('PagesReadThisSession')!.toString());
+    this.pagesReadThisSession = localStorage.getItem('PagesReadThisSession')!.toString().split(',');
+    this.pagesReadThisSession = [...new Set(this.pagesReadThisSession)];
+    this.numberOfPagesReadThisSession = this.pagesReadThisSession.length;
+    console.log(this.pagesReadThisSession)
+    console.log(this.numberOfPagesReadThisSession)
     this.getSummary();
     this.getKhitmaCount();
     this.getLargestGiftId();

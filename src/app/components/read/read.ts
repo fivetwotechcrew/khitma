@@ -11,7 +11,7 @@ import { SupabaseService } from '../../services/supabase.service'
 export class Read implements OnInit {
   private router = inject(Router);
   khitmaId = 0;
-  pagesReadThisSession = 0;
+  pagesReadThisSession: Array<string> = [];
   pageToRead = 0;
   continueDisabled = false;
   showLoader = true;
@@ -27,7 +27,8 @@ export class Read implements OnInit {
   ngOnInit(): void {
     this.pageToRead = parseInt(localStorage.getItem('PageToRead')!.toString());
     this.khitmaId = parseInt(localStorage.getItem('KhitmaID')!.toString());
-    this.pagesReadThisSession = parseInt(localStorage.getItem('PagesReadThisSession')!.toString());
+    this.pagesReadThisSession = localStorage.getItem('PagesReadThisSession')!.toString() != '0' ? localStorage.getItem('PagesReadThisSession')!.toString().split(',') : [];
+    console.log(this.pagesReadThisSession)
 
     if (this.pageToRead == 604) {
       this.continueDisabled = true;
@@ -40,7 +41,7 @@ export class Read implements OnInit {
     this.showLoader = true;
     this.showLoaderSignal.set(this.showLoader);
 
-    this.pagesReadThisSession++;
+    this.pagesReadThisSession.push(this.pageToRead.toString());
     localStorage.setItem('PagesReadThisSession', this.pagesReadThisSession.toString());
 
     // update page assignment completion status
@@ -59,7 +60,7 @@ export class Read implements OnInit {
     this.showLoader = true;
     this.showLoaderSignal.set(this.showLoader);
 
-    this.pagesReadThisSession++;
+    this.pagesReadThisSession.push(this.pageToRead.toString());
     localStorage.setItem('PagesReadThisSession', this.pagesReadThisSession.toString());
 
     // update page assignment completion status

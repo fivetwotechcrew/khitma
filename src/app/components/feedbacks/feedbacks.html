@@ -13,7 +13,7 @@
     }
     @for (feedback of feedbacksSignal(); track $index;) {
     <div class="feedback">
-        <div class="counter">Feedback #{{$index+1}}</div>
+        <div class="counter">Feedback #{{feedbacksSignal().length-$index}}</div>
         <div class="item"
             [ngClass]="feedback.Status == 0 ? '' : feedback.Status == 1 ? 'wip' : feedback.Status == 2 ? 'done' : ''">
             <div class="status">

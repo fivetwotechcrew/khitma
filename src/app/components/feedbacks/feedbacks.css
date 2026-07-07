@@ -3,9 +3,21 @@
     margin: 50px 20px;
 }
 
-.title {
+.header {
+    width: 100%;
     font-size: 2em;
     font-weight: bold;
+}
+
+.header .icon {
+    float: left;
+    transition-duration: 0.5s;
+    width: 100px;
+}
+
+.header .icon:hover {
+    cursor: pointer;
+    transform: translateX(-15px);
 }
 
 .notes {

@@ -41,6 +41,6 @@
     @if (clickedSignal() && !allCheckedSignal()) {
     <div class="text-danger" style="padding-top: 20px;">You have not checked all the boxes. Please read through & check
         them all before starting.
-        &#128521;</div>
+        @if (roomCodeSignal() != 'khitmaforkemi') {&#128521;}</div>
     }
 </div>

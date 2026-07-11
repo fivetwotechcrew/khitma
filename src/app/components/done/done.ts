@@ -24,6 +24,7 @@ export class Done implements OnInit {
   totalPagesReadSignal = signal<number>(this.totalPagesRead);
   progressSignal = signal<number>(this.progress);
   khitmaCountSignal = signal<number>(this.khitmaCount);
+  roomCodeSignal = signal<string>(this.roomCode);
 
   constructor(
     private readonly supabaseService: SupabaseService,
@@ -32,6 +33,7 @@ export class Done implements OnInit {
   ngOnInit() {
     this.roomId = parseInt(localStorage.getItem('RoomId')!.toString());
     this.roomCode = localStorage.getItem('RoomCode')!.toString();
+    this.roomCodeSignal.set(this.roomCode);
     this.khitmaId = parseInt(localStorage.getItem('KhitmaID')!.toString());
     this.pagesReadThisSession = localStorage.getItem('PagesReadThisSession')!.toString().split(',');
     this.pagesReadThisSession = [...new Set(this.pagesReadThisSession)];

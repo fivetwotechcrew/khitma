@@ -1,10 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SupabaseService } from '../../services/supabase.service'
+import { NgClass } from "@angular/common";
 
 @Component({
   selector: 'app-room',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './room.html',
   styleUrl: './room.css',
 })
@@ -25,6 +26,7 @@ export class Room implements OnInit {
   allChecked = false;
   clicked = false;
 
+  roomCodeSignal = signal<string | null>(this.roomCode);
   roomNameSignal = signal<string | null>(this.roomName);
   checkPngSignal1 = signal<string | null>(this.checkPng1);
   checkPngSignal2 = signal<string | null>(this.checkPng2);
@@ -40,6 +42,7 @@ export class Room implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.roomCode = params.get('code');
+      this.roomCodeSignal.set(this.roomCode);
       this.getRoomDetails();
     });
   }
@@ -171,8 +174,15 @@ export class Room implements OnInit {
         break;
     }
 
-    if (this.checkPng1 == this.checkedPng && this.checkPng2 == this.checkedPng && this.checkPng3 == this.checkedPng && this.checkPng4 == this.checkedPng) this.allChecked = true;
-    else this.allChecked = false;
-    this.allCheckedSignal.set(this.allChecked);
+    if (this.roomCode == 'khitmaforkemi') {
+      if (this.checkPng1 == this.checkedPng && this.checkPng2 == this.checkedPng && this.checkPng3 == this.checkedPng && this.checkPng4 == this.checkedPng) this.allChecked = true;
+      else this.allChecked = false;
+      this.allCheckedSignal.set(this.allChecked);
+    }
+    else {
+      if (this.checkPng1 == this.checkedPng && this.checkPng2 == this.checkedPng && this.checkPng3 == this.checkedPng) this.allChecked = true;
+      else this.allChecked = false;
+      this.allCheckedSignal.set(this.allChecked);
+    }
   }
 }

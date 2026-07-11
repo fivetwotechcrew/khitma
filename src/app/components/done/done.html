@@ -1,5 +1,14 @@
 <div class="done">
     <div class="doa glass-card">
+        @if (roomCodeSignal() == 'khitmaforkemi') {
+        <div class="arabic">
+            اَللَّهُمَّ اغْفِرْ لَهَا وَارْحَمْهَا وَعَافِهَا وَاعْفُ عَنْهَا
+        </div>
+        <div class="english">
+            O Allah, forgive her, have mercy on her, grant her safety and pardon her.
+        </div>
+        }
+        @else {
         <div class="arabic">
             اللَّهُمَّ ارْحَمْنَا بِالْقُرْآنِ، وَجَعَلْهُ لَنَا إِمَامًا وَنُورًا وَهُدًى وَرَحْمَةً، اللَّهُمَّ
             ذَكِّرْنَا مِنْهُمَا نَسِينَا، وَعَلِّمْنَا مِنْهُمَا جَهِلْنَا، وَارْزُقْنَا تِلَاوَتَهُ آنَاءَ اللَّيْلِ
@@ -10,6 +19,7 @@
             remind us what we have forgotten from it, teach us what we are ignorant of from it. Bless us with its
             recitation all nights and days. Make it as a proof for us, O Lord of the worlds.
         </div>
+        }
     </div>
 
     <div class="summary">
@@ -25,7 +35,8 @@
             <div class="glass-progress" style="width: 65%;"></div>
         </div>
         <div class="message">
-            You have recited {{numberOfPagesReadThisSession}} page(s) for this session. Thank you for reciting. May Allah accept
+            You have recited {{numberOfPagesReadThisSession}} page(s) for this session. Thank you for reciting. May
+            Allah accept
             it from you. Amin.
         </div>
     </div>
@@ -36,6 +47,7 @@
     </div>
 
     <div class="footer">
-        Got any <a href="#" (click)="redirect($event, 'feedbacks')">feedbacks</a>? Let us know <a href="https://forms.gle/PHZoNEPVk1ooC6wm7" target="_blank">here</a>.
+        Got any <a href="#" (click)="redirect($event, 'feedbacks')">feedbacks</a>? Let us know <a
+            href="https://forms.gle/PHZoNEPVk1ooC6wm7" target="_blank">here</a>.
     </div>
 </div>

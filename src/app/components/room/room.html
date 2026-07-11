@@ -3,7 +3,7 @@
         Welcome to {{roomNameSignal()}}
     </div>
     <div class="notes">
-        Just a tiny note before we start... &#128522;
+        Just a tiny note before we start... @if (roomCodeSignal() != 'khitmaforkemi') {&#128522;}
         <br /><br />
         <span (click)="toggleCheck('1')"><img src={{checkPngSignal1()}} width="20" /> Please ensure that you are in a
             state of purity with a <span class="highlight">valid wudhu'</span>, and
@@ -11,8 +11,16 @@
                 aurah</span>.</span>
         <br />
         <span (click)="toggleCheck('2')"><img src={{checkPngSignal2()}} width="20" /> Let's take a minute to do some
-            <span class="highlight">istighfar</span> and to <span class="highlight">set
+            <span class="highlight">istighfar</span> and to <span class="highlight"
+                [ngClass]="roomCodeSignal() == 'khitmaforkemi' ? 'blue' : ''">set
                 our intentions</span> for this session.</span>
+        @if (roomCodeSignal() == 'khitmaforkemi') {
+        <br />
+        <span (click)="toggleCheck('4')"><img src={{checkPngSignal4()}} width="20" /> <span class="highlight blue">I
+                intend to read these pages of
+                the Quran for Kafayat Oyekemi Bawa- Allah (nee Agoro) who returned to Allah on Friday 10th July
+                2026.</span> </span>
+        }
         <br />
         <span (click)="toggleCheck('3')"><img src={{checkPngSignal3()}} width="20" /> Please ensure that you <span
                 class="highlight yellow">click either
@@ -20,10 +28,10 @@
                 to
                 read more"</span> after finishing a page. This ensures that the system successfully records the page as
             completed.</span>
-        <br />
-        <span (click)="toggleCheck('4')"><img src={{checkPngSignal4()}} width="20" /> If a Champ doesn't finish her
+        <!-- <span (click)="toggleCheck('4')"><img src={{checkPngSignal4()}} width="20" /> If a Champ doesn't finish her
             page within one (1) hour, it goes back into the pool to be read again – so <span
                 class="highlight yellow">pages might not appear in order.</span> </span>
+        <br /> -->
         <br /><br />
         All checked? <img src="check-mark.png" width="20" />
         <br />

@@ -175,7 +175,7 @@ export class Room implements OnInit {
     }
 
     if (this.roomCode == 'khitmaforkemi') {
-      if (this.checkPng1 == this.checkedPng && this.checkPng2 == this.checkedPng && this.checkPng3 == this.checkedPng && this.checkPng4 == this.checkedPng) this.allChecked = true;
+      if (this.checkPng1 == this.checkedPng && this.checkPng3 == this.checkedPng && this.checkPng4 == this.checkedPng) this.allChecked = true;
       else this.allChecked = false;
       this.allCheckedSignal.set(this.allChecked);
     }

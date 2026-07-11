@@ -5,23 +5,24 @@
     <div class="notes">
         Just a tiny note before we start... @if (roomCodeSignal() != 'khitmaforkemi') {&#128522;}
         <br /><br />
+        @if (roomCodeSignal() == 'khitmaforkemi') {
+        <span (click)="toggleCheck('4')"><img src={{checkPngSignal4()}} width="20" /> <span class="highlight blue">I
+                intend to read these pages of
+                the Quran for Kafayat Oyekemi Bawa- Allah (nee Agoro) who returned to Allah on Friday 10th July
+                2026.</span> </span>
+        <br />
+        }
         <span (click)="toggleCheck('1')"><img src={{checkPngSignal1()}} width="20" /> Please ensure that you are in a
             state of purity with a <span class="highlight">valid wudhu'</span>, and
             that you are <span class="highlight">covering your
                 aurah</span>.</span>
         <br />
+        @if (roomCodeSignal() != 'khitmaforkemi') {
         <span (click)="toggleCheck('2')"><img src={{checkPngSignal2()}} width="20" /> Let's take a minute to do some
-            <span class="highlight">istighfar</span> and to <span class="highlight"
-                [ngClass]="roomCodeSignal() == 'khitmaforkemi' ? 'blue' : ''">set
+            <span class="highlight">istighfar</span> and to <span class="highlight">set
                 our intentions</span> for this session.</span>
-        @if (roomCodeSignal() == 'khitmaforkemi') {
         <br />
-        <span (click)="toggleCheck('4')"><img src={{checkPngSignal4()}} width="20" /> <span class="highlight blue">I
-                intend to read these pages of
-                the Quran for Kafayat Oyekemi Bawa- Allah (nee Agoro) who returned to Allah on Friday 10th July
-                2026.</span> </span>
         }
-        <br />
         <span (click)="toggleCheck('3')"><img src={{checkPngSignal3()}} width="20" /> Please ensure that you <span
                 class="highlight yellow">click either
                 "I'm done for now" or "I want

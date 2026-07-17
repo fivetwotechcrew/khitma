@@ -49,8 +49,10 @@ export class SupabaseService {
     return this.supabase
       .from('khitma')
       .select('*')
-      .eq('IsCompleted', false)
-      .eq('RoomId', roomId);
+      // .eq('IsCompleted', false)
+      .eq('RoomId', roomId)
+      .order('Id', { ascending: false })
+      .limit(1);
   }
 
   async getKhitmasByRoomId(roomId: number) {
@@ -130,13 +132,13 @@ export class SupabaseService {
     const currentDateTimeInDbFormat = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
     return this.supabase
-        .from('page_assignment')
-        .update({
-          'IsCompleted': true,
-          'DateTimeCompleted': currentDateTimeInDbFormat
-        })
-        .eq('KhitmaId', khitmaId)
-        .eq('PageNum', pageNum);
+      .from('page_assignment')
+      .update({
+        'IsCompleted': true,
+        'DateTimeCompleted': currentDateTimeInDbFormat
+      })
+      .eq('KhitmaId', khitmaId)
+      .eq('PageNum', pageNum);
   }
 
   async getFeedbacks() {
